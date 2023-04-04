@@ -22,7 +22,7 @@
             <div class="wrapper">
                 <small class="left">Amount</small>
                 <div class="right">
-                    <input type="text" id="amount_input" value="" readonly>
+                    <b id="amount_input"></b>
                     <button onclick="copyText('amount_input')">
                         <i class="bi bi-files"></i> Copy
                         <span id="tooltip1" class="tooltip">Copy</span>
@@ -31,9 +31,10 @@
             </div>
     
             <div class="wrapper">
-                <small class="left">KuickPay ID</small>
+                <small class="left">
+                    <input type="text" id="idOption" placeholder="Payment ID" readonly>
+                </small>
                 <div class="right">
-                    <input type="text" id="id_input" placeholder="Enter Your Payment Id" value="">
                     <b id="id_input"> </b>
                     <button onclick="copyText('id_input')">
                         <i class="bi bi-files"></i> Copy
@@ -67,8 +68,8 @@
     }
 
     .form .wrapper .left {padding: 16px; background: #f5f5f5;}
+    .form .wrapper .left input {border: none; outline: none; background: none; width: 80px;}
     .form .wrapper .right {padding: 16px; align-self: center;}
-    .form .wrapper .right input {border: 1px solid #eee; padding: 5px 10px; outline: none; font-size: 14px; font-weight: bold; max-width: 100px; border-radius: 5px;}
     .form .wrapper .right button {background: none; border: none; font-size: 15px; color: #1677ff; font-weight: bold; position: relative; margin-left: 10px; cursor: pointer;}
     .form .wrapper .right button .tooltip {position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%); background: #333333ff; color: #fff; font-size: 13px; font-weight: normal; padding: 5px; border-radius: 5px; display: none;}
     .form .wrapper .right button:hover .tooltip {display: block;}
@@ -80,7 +81,7 @@
 <script>
         // copy elements
     function copyText(element) {
-        let copyText = document.getElementById(element).value;
+        let copyText = document.getElementById(element).innerText;
         let copyAlert1 = document.getElementById("tooltip1");
         let copyAlert2 = document.getElementById("tooltip2");
 
@@ -95,10 +96,12 @@
     window.addEventListener('load', () => {
         const params = (new URL(document.location)).searchParams;
         const AMNT = params.get('amntInput');
+        const OPT = params.get('optInput');
         const ID = params.get('idInput');
 
-        document.getElementById("amount_input").value = AMNT;
-        document.getElementById("id_input").value = ID;
+        document.getElementById("amount_input").innerHTML = AMNT;
+        document.getElementById("idOption").value = OPT;
+        document.getElementById("id_input").innerHTML = ID;
     });
 </script>
                 <!-- js code end here -->
