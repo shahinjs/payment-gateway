@@ -22,7 +22,7 @@
             <div class="wrapper">
                 <small class="left">Amount</small>
                 <div class="right">
-                    <b id="amount_input"> </b>
+                    <input type="text" id="amount_input" value="" readonly>
                     <button onclick="copyText('amount_input')">
                         <i class="bi bi-files"></i> Copy
                         <span id="tooltip1" class="tooltip">Copy</span>
@@ -33,6 +33,7 @@
             <div class="wrapper">
                 <small class="left">KuickPay ID</small>
                 <div class="right">
+                    <input type="text" id="id_input" placeholder="Enter Your Payment Id" value="">
                     <b id="id_input"> </b>
                     <button onclick="copyText('id_input')">
                         <i class="bi bi-files"></i> Copy
@@ -46,12 +47,6 @@
     
     <section class="container">
         <h4>Don't know how to do?</h4>
-    </section>
-    <hr>
-
-    <section class="container">
-        <small>Open your Easypaisa or Jazzcash, search KuickPay, then paste the ID to make a payment. Or follow the video below.</small> <br/><br/>
-        <iframe frameborder="0" src="https://www.youtube-nocookie.com/embed/OXgPj_E07J0" allowfullscreen=""></iframe>
     </section>
 
     <footer class="container">
@@ -68,8 +63,7 @@
     hr {border: 1px solid #eee;}
     header {background: #001529; color: #ddd;}
     .form {border: 1px solid #eee; display: flex; flex-wrap: wrap; border-radius: 6px;}
-    .form .wrapper {flex: 40%; display: flex; flex-wrap: nowrap;}
-    .form .wrapper:last-child {flex: 60%;}
+    .form .wrapper {flex: 50%; display: flex; flex-wrap: nowrap;}
 
     @media screen and (max-width: 767px) {
         .form {border: none;}
@@ -78,11 +72,11 @@
     }
 
     .form .wrapper .left {padding: 16px 24px; background: #f5f5f5;}
-    .form .wrapper .right {padding: 16px 24px;}
+    .form .wrapper .right {padding: 16px 24px; white-space: nowrap; align-self: center;}
+    .form .wrapper .right input {border: 1px solid #eee; padding: 5px 10px; outline: none; font-size: 14px; font-weight: bold; max-width: 120px; border-radius: 5px;}
     .form .wrapper .right button {background: none; border: none; font-size: 15px; color: #1677ff; font-weight: bold; position: relative; margin-left: 10px; cursor: pointer;}
     .form .wrapper .right button .tooltip {position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%); background: #333333ff; color: #fff; font-size: 13px; font-weight: normal; padding: 5px; border-radius: 5px; display: none;}
     .form .wrapper .right button:hover .tooltip {display: block;}
-    iframe {width: 100%; height: auto; aspect-ratio: 16 / 9}
     footer {background: #f5f5f5;}
 </style>
                 <!-- css codes end here -->
@@ -91,7 +85,7 @@
 <script>
         // copy elements
     function copyText(element) {
-        let copyText = document.getElementById(element).innerText;
+        let copyText = document.getElementById(element).value;
         let copyAlert1 = document.getElementById("tooltip1");
         let copyAlert2 = document.getElementById("tooltip2");
 
@@ -108,8 +102,8 @@
         const AMNT = params.get('amntInput');
         const ID = params.get('idInput');
 
-        document.getElementById("amount_input").innerHTML = AMNT;
-        document.getElementById("id_input").innerHTML = ID;
+        document.getElementById("amount_input").value = AMNT;
+        document.getElementById("id_input").value = ID;
     });
 </script>
                 <!-- js code end here -->
